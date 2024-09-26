@@ -15,7 +15,6 @@ namespace W5_E3
             string userInput = "";
             Console.WriteLine("Welcome to the store!");
             Console.WriteLine();
-            //Code that outputs all products in list collection?
             do
             {
                 Console.WriteLine("Press 1 to add more product(s), press 2 to remove a product, press 3 to calculate price. To exit the program, press 4.");
@@ -25,8 +24,12 @@ namespace W5_E3
                 {
                     case 1:
                         Console.WriteLine("What would you like to get?");
-                        userInput = Console.ReadLine();
-                        cart.AddProduct(userInput);
+                        string userProductName = Console.ReadLine();
+                        Console.WriteLine("What is the Product ID?");
+                        string userProductID = Console.ReadLine();
+                        Console.WriteLine("What is the price?");
+                        double userPrice = Convert.ToDouble(Console.ReadLine());
+                        cart.AddProduct(userProductID, userProductName, userPrice);
                         break;
                     case 2:
                         Console.WriteLine("What would you like to remove?");
@@ -49,29 +52,28 @@ namespace W5_E3
         }
         class ShoppingCart
         {
-            List<Product> Items = new List<Product>()
-            {
-                new Product(){ProductID = "A1", ProductName="Apple", Price=1.50},
-                new Product(){ProductID = "A2", ProductName="Orange", Price=2.00},
-                new Product(){ProductID = "B7", ProductName="Vacuum", Price=69.99},
-                new Product(){ProductID = "C5", ProductName="Chips", Price=3.00},
-                new Product(){ProductID = "D4", ProductName="Garden Hose", Price=19.99},
-            };
+            List<Product> Items = new List<Product>();
                 
-            public void AddProduct(string product)
+            public void AddProduct(string aProductID, string aProductName, double aPrice)
             {
-                //Compare userInput to ProductName; add to cart after comparison
-                Items.Add(product);
+                new Product() 
+                { 
+                    ProductID = aProductID, 
+                    ProductName = aProductName, 
+                    Price = aPrice 
+                };
             }
             public void RemoveProduct(string productID) 
             {
-                //Display what is in cart + productID 
-                Items.Remove(productID);
+                foreach(item i in Items)
+                {
+
+                }
             }
             public double CalculateTotalPrice()
             {
                 double totalPrice = 0;
-                //Grab price from list; add them; and times by 8.25%(1.0825) to include taxes
+                for(int i = 0; 
                 return totalPrice;
             }
         }
